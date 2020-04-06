@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
+use App\User;
+use App\Photo;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserEditRequest;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -20,7 +26,8 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        return view('admin.users.index');
+        $users = User::all();
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -31,6 +38,9 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
+        $roles = Role::pluck('name','id')->all();
+        $status = array('0'=>'Not Active','1'=>'Active');
+        return view('admin.users.create',compact('roles','status')) ;
     }
 
     /**
@@ -39,8 +49,32 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
+        $input= $request->all();
+        $photo_id = 0 ;
+        if($file = $request->file('photo')){
+            $filename = time().$file->getClientOriginalName();
+            $file->move('images/user_photo',$filename);
+            $photo = Photo::create([
+                'file'=>$filename
+            ]);
+            $photo_id = $photo->id;
+        }
+        
+        User::create([
+             'name' => $input['name'],
+             'email' => $input['email'],
+             'password' => bcrypt($input['password']),
+             'role_id' => $input['role_id'],
+             'photo_id' => $photo_id,
+             'is_active' => $input['is_active']
+        ]);
+
+        Session::flash('message','The user has been created !');
+        Session::flash('alert-class','alert alert-info');
+
+        return redirect(route('admin.user.index'));
         //
     }
 
@@ -64,6 +98,11 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('name','id')->all();
+        $status = array('0'=>'Not Active','1'=>'Active');
+
+        return view('admin.users.edit',compact('user','roles','status'));
     }
 
     /**
@@ -73,9 +112,23 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        $input = $request->all();
+        if($file = $request->file('photo')){
+            $filename = time().$file->getClientOriginalName();
+            $file->move('images/user_photo',$filename);
+            $photo = Photo::create(['file'=>$filename]);
+            $input['photo_id'] = $photo->id;
+        }else{
+            $input['photo_id'] = 0;
+        }
+        $user->update($input);
+        Session::flash('message','The user has been updated !');
+        Session::flash('alert-class','alert alert-success');
+        return redirect(route('admin.user.index'));
     }
 
     /**
@@ -86,6 +139,11 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        unlink(public_path().'/images/user_photo/'.$user->photo->file);
+        $user->delete();
+        Session::flash('message','The user has been deleted !');
+        Session::flash('alert-class','alert alert-danger');
+        return redirect(route('admin.user.index'));
     }
 }
