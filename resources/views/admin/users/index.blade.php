@@ -35,7 +35,7 @@
                 <td>{{$user->updated_at->diffForHumans()}}</td>
                 <td><a href="{{route('admin.user.edit',$user->id)}}"><button type="button" class="btn btn-info">Edit</button></a></td>
                 <td>  
-                    {!! Form::open(['method'=>'delete','action'=>['AdminUsersController@destroy',$user->id]]) !!}
+                    {!! Form::open(['method'=>'delete','action'=>['AdminUserController@destroy',$user->id]]) !!}
                     {!! Form::submit('Delete',['class'=>'btn btn-danger','onclick'=>"return confirm('Are you sure ?')"]) !!}
                     {!! Form::close() !!}
                 </td>

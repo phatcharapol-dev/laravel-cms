@@ -10,6 +10,10 @@ class Photo extends Model
     //
 
     public function user(){
-        return $this->hasOne('App\User','id');
+        return $this->hasOne('App\User','photo_id');
+    }
+
+    public function post(){
+        return $this->hasOne('App\Post','photo_id');
     }
 }

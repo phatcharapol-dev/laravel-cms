@@ -10,7 +10,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserEditRequest;
 use Illuminate\Support\Facades\Session;
 
-class AdminUsersController extends Controller
+class AdminUserController extends Controller
 {
     /**
      * Display a listing of the resource.

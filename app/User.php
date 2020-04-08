@@ -29,11 +29,15 @@ class User extends Authenticatable
     ];
 
     public function role(){
-        return $this->belongsTo('App\Role','role_id');
+        return $this->belongsTo('App\Role');
     }
 
     public function photo(){
-        return $this->belongsTo('App\Photo','photo_id');
+        return $this->belongsTo('App\Photo');
+    }
+
+    public function posts(){
+        return $this->hasMany('App\Post','user_id');
     }
 
     public function isAdmin(){
