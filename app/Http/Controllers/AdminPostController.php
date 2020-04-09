@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Photo;
-use App\Post ;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostEditRequest;
 use Illuminate\Support\Facades\Session;
 
 class AdminPostController extends Controller
@@ -48,7 +49,7 @@ class AdminPostController extends Controller
         //
         $input = $request->all();
         $photo_id = 0 ;
-        if($file = $request->file('photo_id')){
+        if($file = $request->file('photo')){
             $filename = time().$file->getClientOriginalName();
             $file->move('images/post_photo',$filename);
             $photo=Photo::create([
@@ -76,10 +77,7 @@ class AdminPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    public function show($id){}
 
     /**
      * Show the form for editing the specified resource.
@@ -90,6 +88,9 @@ class AdminPostController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::findOrFail($id);
+        $categories = Category::pluck('name','id');
+        return view('admin.posts.edit',compact('post','categories'));
     }
 
     /**
@@ -99,9 +100,26 @@ class AdminPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostEditRequest $request, $id)
     {
         //
+        $post = Post::findOrFail($id);
+        $input = $request->all();
+        if($file = $request->file('photo')){
+            //Delete Old Img
+            if($post->photo && file_exists(public_path().'/images/post_photo/'.$post->photo->file)){
+                unlink(public_path().'/images/post_photo/'.$post->photo->file);
+            }
+            //Add New Img
+            $filename = time().$file->getClientOriginalName();
+            $file->move('images/post_photo',$filename);
+            $photo = Photo::create(['file'=>$filename]);
+            $input['photo_id'] = $photo->id;
+        }
+        $post->update($input);
+        Session::flash('message','The post has been updated !');
+        Session::flash('alert-class','alert alert-success');
+        return redirect(route('admin.post.index'));
     }
 
     /**
@@ -114,8 +132,9 @@ class AdminPostController extends Controller
     {
         //
         $post = Post::findOrFail($id) ;
-        $file_image = $post->photo->file ;
-        unlink(public_path().'/images/post_photo/'.$file_image);
+        if($post->photo && file_exists(public_path().'/images/post_photo/'.$post->photo->file)){
+            unlink(public_path().'/images/post_photo/'.$post->photo->file);
+        }
         $post->delete();
         Session::flash('message','The post has been deleted !');
         Session::flash('alert-class','alert alert-danger');

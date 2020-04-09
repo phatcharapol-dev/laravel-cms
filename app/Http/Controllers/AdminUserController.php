@@ -118,6 +118,12 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
         $input = $request->all();
         if($file = $request->file('photo')){
+
+            //Delete Old Img
+            if($user->photo && file_exists(public_path().'/images/user_photo/'.$user->photo->file)){
+                unlink(public_path().'/images/user_photo/'.$user->photo->file);
+            }
+            //Add New Img
             $filename = time().$file->getClientOriginalName();
             $file->move('images/user_photo',$filename);
             $photo = Photo::create(['file'=>$filename]);
@@ -140,7 +146,9 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        unlink(public_path().'/images/user_photo/'.$user->photo->file);
+        if(file_exists(public_path().'/images/user_photo/'.$user->photo->file)){
+            unlink(public_path().'/images/user_photo/'.$user->photo->file);
+        }
         $user->delete();
         Session::flash('message','The user has been deleted !');
         Session::flash('alert-class','alert alert-danger');
