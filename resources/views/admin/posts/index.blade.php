@@ -4,7 +4,7 @@
     @include('include.session-msg')
     <h1>Posts</h1>
 
-    <a href="{{route('admin.post.create')}}"><button type="button" class="btn btn-primary">Create Post</button></a>
+    <a href="{{route('admin.posts.create')}}"><button type="button" class="btn btn-primary">Create Post</button></a>
 
 <table class="table">
     <thead>
@@ -33,7 +33,7 @@
                 <td>{{$post->body}}</td>
                 <td>{{$post->created_at->diffForHumans()}}</td>
                 <td>{{$post->updated_at->diffForHumans()}}</td>
-                <td><a href="{{route('admin.post.edit',$post->id)}}
+                <td><a href="{{route('admin.posts.edit',$post->id)}}
                     "><button type="button" class="btn btn-info">Edit</button></a></td>
                 <td>  
                     {!! Form::open(['method'=>'delete','action'=>['AdminPostController@destroy',$post->id]]) !!}

@@ -33,7 +33,7 @@
     {!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}
 {!!Form::close()!!}
 
-{{-- <form method='POST' action={{route('admin.user.store')}} enctype="multipart/form-data">
+{{-- <form method='POST' action={{route('admin.users.store')}} enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="name">Name</label>

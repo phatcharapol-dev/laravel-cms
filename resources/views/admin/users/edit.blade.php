@@ -10,6 +10,7 @@
 </div>
 <div class="col-sm-9">
   {!!Form::open(['method'=>'patch','action' => ['AdminUserController@update',$user->id],'files'=>true])!!}
+    {!! Form::hidden('id',$user->id) !!}
   <div class="form-group">
     {!! Form::label('name','Name') !!}
     {!! Form::text('name',$user->name,['class'=>'form-control','placeholder'=>'Enter Full Name']) !!}

@@ -4,7 +4,7 @@
 @section('content')
 @include('include.session-msg')
 <h1>User</h1>
-<a href="{{route('admin.user.create')}}"><button type="button" class="btn btn-primary">Create User</button></a>
+<a href="{{route('admin.users.create')}}"><button type="button" class="btn btn-primary">Create User</button></a>
 
 <table class="table">
     <thead>
@@ -33,7 +33,7 @@
                 <td>{{$user->is_active == '1' ? 'Active': 'Not Active'}}</td>
                 <td>{{$user->created_at->diffForHumans()}}</td>
                 <td>{{$user->updated_at->diffForHumans()}}</td>
-                <td><a href="{{route('admin.user.edit',$user->id)}}"><button type="button" class="btn btn-info">Edit</button></a></td>
+                <td><a href="{{route('admin.users.edit',$user->id)}}"><button type="button" class="btn btn-info">Edit</button></a></td>
                 <td>  
                     {!! Form::open(['method'=>'delete','action'=>['AdminUserController@destroy',$user->id]]) !!}
                     {!! Form::submit('Delete',['class'=>'btn btn-danger','onclick'=>"return confirm('Are you sure ?')"]) !!}

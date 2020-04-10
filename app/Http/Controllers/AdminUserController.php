@@ -74,7 +74,7 @@ class AdminUserController extends Controller
         Session::flash('message','The user has been created !');
         Session::flash('alert-class','alert alert-info');
 
-        return redirect(route('admin.user.index'));
+        return redirect(route('admin.users.index'));
         //
     }
 
@@ -134,7 +134,7 @@ class AdminUserController extends Controller
         $user->update($input);
         Session::flash('message','The user has been updated !');
         Session::flash('alert-class','alert alert-success');
-        return redirect(route('admin.user.index'));
+        return redirect(route('admin.users.index'));
     }
 
     /**
@@ -146,12 +146,12 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        if(file_exists(public_path().'/images/user_photo/'.$user->photo->file)){
+        if($user->photo && file_exists(public_path().'/images/user_photo/'.$user->photo->file)){
             unlink(public_path().'/images/user_photo/'.$user->photo->file);
         }
         $user->delete();
         Session::flash('message','The user has been deleted !');
         Session::flash('alert-class','alert alert-danger');
-        return redirect(route('admin.user.index'));
+        return redirect(route('admin.users.index'));
     }
 }

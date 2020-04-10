@@ -1,4 +1,4 @@
-<?php
+'<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['admin']], function () {
-    Route::resource('admin/user','AdminUserController',['as'=>'admin']);
-    Route::resource('admin/post','AdminPostController',['as'=>'admin']);
+    Route::resource('admin/users','AdminUserController',['as'=>'admin']);
+    Route::resource('admin/posts','AdminPostController',['as'=>'admin']);
+    Route::resource('admin/categories','AdminCategoryController',['as'=>'admin']);
 });
 

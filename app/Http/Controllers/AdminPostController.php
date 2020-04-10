@@ -68,7 +68,7 @@ class AdminPostController extends Controller
         Session::flash('message','The post has been created !');
         Session::flash('alert-class','alert alert-info');
        
-        return redirect(route('admin.post.index'));
+        return redirect(route('admin.posts.index'));
     }
 
     /**
@@ -119,7 +119,7 @@ class AdminPostController extends Controller
         $post->update($input);
         Session::flash('message','The post has been updated !');
         Session::flash('alert-class','alert alert-success');
-        return redirect(route('admin.post.index'));
+        return redirect(route('admin.posts.index'));
     }
 
     /**
@@ -138,6 +138,6 @@ class AdminPostController extends Controller
         $post->delete();
         Session::flash('message','The post has been deleted !');
         Session::flash('alert-class','alert alert-danger');
-        return redirect(route('admin.post.index'));
+        return redirect(route('admin.posts.index'));
     }
 }
