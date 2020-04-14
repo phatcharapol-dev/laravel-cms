@@ -1,4 +1,4 @@
-'<?php
+<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/post/{id}','AdminPostController@post')->name('home.post');
+
 Route::group(['middleware' => ['admin']], function () {
     Route::resource('admin/users','AdminUserController',['as'=>'admin']);
     Route::resource('admin/posts','AdminPostController',['as'=>'admin']);
     Route::resource('admin/categories','AdminCategoryController',['as'=>'admin']);
+    Route::resource('admin/comments','PostCommentController',['as'=>'admin']);
+    Route::resource('admin/comment/replies','CommentReplyController',['as'=>'admin']);
 });
 

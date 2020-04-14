@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
@@ -29,7 +26,6 @@
 </head>
 
 <body id="admin-page">
-
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -142,6 +138,10 @@
 
                             <li>
                                 <a href="{{route('admin.posts.create')}}">Create Post</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('admin.comments.index')}}">All Comments</a>
                             </li>
 
                         </ul>

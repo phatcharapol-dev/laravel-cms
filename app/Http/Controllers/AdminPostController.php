@@ -140,4 +140,10 @@ class AdminPostController extends Controller
         Session::flash('alert-class','alert alert-danger');
         return redirect(route('admin.posts.index'));
     }
+
+    public function post($id){
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        return view('post',compact('post','categories'));
+    }
 }
