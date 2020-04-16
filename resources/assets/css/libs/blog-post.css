@@ -11,3 +11,19 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.content-blog-post{
+	margin-top:5%;
+}
+
+.nested-comment{
+	margin-top:40px;	
+}
+
+.reply-button{
+	text-align:right;
+}
+.reply-comment{
+	padding:30px 0;
+}
+

@@ -17,6 +17,8 @@
         <th scope="col">Body</th>
         <th scope="col">Create_at</th>
         <th scope="col">Update_at</th>
+        <th scope="col">Posts</th>
+        <th scope="col">Comments</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
@@ -33,6 +35,8 @@
                 <td>{{$post->body}}</td>
                 <td>{{$post->created_at->diffForHumans()}}</td>
                 <td>{{$post->updated_at->diffForHumans()}}</td>
+                <td><a href="{{route('home.post',$post->slug)}}"><button type="button" class="btn btn-info">View Posts</button></a></td>
+                <td><a href="{{route('admin.comments.show',$post->id)}}"><button type="button" class="btn btn-info">View Comments</button></a></td>
                 <td><a href="{{route('admin.posts.edit',$post->id)}}
                     "><button type="button" class="btn btn-info">Edit</button></a></td>
                 <td>  

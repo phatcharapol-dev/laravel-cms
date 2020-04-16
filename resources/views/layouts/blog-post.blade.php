@@ -58,7 +58,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container" style="margin-top:5%">
+    <div class="container content-blog-post">
 
         <div class="row">
 

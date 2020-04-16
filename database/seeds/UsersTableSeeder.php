@@ -16,12 +16,12 @@ class UsersTableSeeder extends Seeder
         //
         DB::table('users')->insert([
             [
-                'name' => 'admin',
+                'name' => 'Administrator',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('password'),
                 'role_id' => 1,
                 'is_active' => 1,
-                'photo_id' => 0,
+                'photo_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -31,17 +31,17 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'role_id' => 2,
                 'is_active' => 1,
-                'photo_id' => 0,
+                'photo_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Pornpol Tridechee',
-                'email' => 'pornpol@gmail.com',
+                'name' => 'Janifer Lopez',
+                'email' => 'janifer@gmail.com',
                 'password' => bcrypt('password'),
                 'role_id' => 3,
                 'is_active' => 1,
-                'photo_id' => 0,
+                'photo_id' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

@@ -29,3 +29,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::resource('admin/comment/replies','CommentReplyController',['as'=>'admin']);
 });
 
+Route::group(['middleware' => ['author']], function () {
+
+});
+

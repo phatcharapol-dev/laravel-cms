@@ -50,18 +50,47 @@
                 <!-- Comment -->
 
                 @foreach($post->comments as $comment)
+                @if($comment->is_active == 1)
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        <img height='64px' class="media-object" src="{{$comment->photo ? asset('images/user_photo/'.$comment->photo) : 'http://placehold.it/64x64'}}" alt="">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{$comment->email}}
                             <small>{{$comment->created_at}}</small>
                         </h4>
                         {{$comment->body}}
+                        <div class="reply-button">
+                            <a class="btn btn-primary" data-toggle="collapse" href="{{'#reply-comment'.$comment->id}}" role="button" aria-expanded="false" aria-controls="{{'reply-comment'.$comment->id}}">Reply</a>
+                         </div>
+                        <!-- Nested Comment -->
+                        @foreach($comment->replies as $reply)
+                        @if($reply->is_active == 1)
+                        <div class="media nested-comment">
+                            <a class="pull-left" href="#">
+                                <img height='64px' class="media-object" src="{{$reply->photo ? asset('images/user_photo/'.$reply->photo) : 'http://placehold.it/64x64'}}" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{$reply->email}}
+                                    <small>{{$reply->created_at}}</small>
+                                </h4>
+                                {{$reply->body}}
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                        <!-- End Nested Comment -->
+                        
+                        {!!Form::open(['method'=>'post','action' => 'CommentReplyController@store','files'=>true])!!}
+                            <div id="{{'reply-comment'.$comment->id}}" class="form-inline reply-comment collapse">
+                              {!! Form::hidden('comment_id',$comment->id) !!}
+                              {!! Form::textarea('body',null,['class'=>'form-control','rows'=>1,'placeholder'=>'Reply Message']) !!}
+                              {!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}
+                            </div> 
+                        {!!Form::close()!!}
                     </div>
                 </div>
-
+                @endif
                @endforeach
 
 @endsection

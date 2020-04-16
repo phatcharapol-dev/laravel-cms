@@ -2,6 +2,8 @@
 /public/hot
 /public/storage
 /public/images
+!public/images/user_photo/user_avatar_men.jpg
+!public/images/user_photo/user_avatar_women.jpg
 /storage/*.key
 /vendor
 /.idea
