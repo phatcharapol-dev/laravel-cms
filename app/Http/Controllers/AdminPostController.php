@@ -22,7 +22,7 @@ class AdminPostController extends Controller
     {
         //
        
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -145,6 +145,12 @@ class AdminPostController extends Controller
         $post = Post::findBySlugOrFail($slug);
         $categories = Category::all();
         return view('post',compact('post','categories'));
+    }
+
+    public function posts(){
+        $posts = Post::paginate(5);
+        $categories = Category::all();
+        return view('home',compact('posts','categories'));
     }
 
 }

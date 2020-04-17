@@ -2,7 +2,7 @@
 
 
 @section('content')
-@include('include.session-msg')
+@include('includes.session-msg')
 <h1>User</h1>
 <a href="{{route('admin.users.create')}}"><button type="button" class="btn btn-primary">Create User</button></a>
 
@@ -43,7 +43,7 @@
         @endforeach
     </tbody>
   </table>
-
+  {{$users->links()}}
 
 
 

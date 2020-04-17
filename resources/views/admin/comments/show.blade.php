@@ -2,7 +2,7 @@
 
 
 @section('content')
-@include('include.session-msg')
+@include('includes.session-msg')
 
 	@if(count($comments) > 0)
 		  <h1>All Comments</h1>

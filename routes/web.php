@@ -11,15 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/post/{id}','AdminPostController@post')->name('home.post');
+Route::get('/posts/{id}','AdminPostController@post')->name('home.post');
+
+Route::get('/','AdminPostController@posts')->name('home.posts');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::resource('admin/users','AdminUserController',['as'=>'admin']);

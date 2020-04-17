@@ -2,7 +2,7 @@
 
 
 @section('content')
-@include('include.session-msg')
+@include('includes.session-msg')
 
 	@if(count($replies) > 0)
 		  <h1>All Replies</h1>

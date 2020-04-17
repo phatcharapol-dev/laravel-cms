@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(PhotosTableSeeder::class);
+
+        $posts = factory(App\Post::class,30)->create();
     }
 }

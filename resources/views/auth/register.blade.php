@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.blog-home')
 
-@section('content')
-<div class="container">
+@section('register-form')
+<div class="container register-form">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

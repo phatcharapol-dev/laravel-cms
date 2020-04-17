@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    @include('include.session-msg')
+    @include('includes.session-msg')
     <h1>Posts</h1>
 
     <a href="{{route('admin.posts.create')}}"><button type="button" class="btn btn-primary">Create Post</button></a>
@@ -31,8 +31,8 @@
                 <td>{{$post->user->name}}</td>
                 <td>{{$post->category->name}}</td>
                 <td><img src="{{ $post->photo ? asset('images/post_photo/'.$post->photo->file) : 'https://via.placeholder.com/400'}}" width='40px' height="auto"></td>
-                <td>{{$post->title}}</td>
-                <td>{{$post->body}}</td>
+                <td>{{strLimit($post->title,15)}}</td>
+                <td>{{strLimit($post->body,15)}}</td>
                 <td>{{$post->created_at->diffForHumans()}}</td>
                 <td>{{$post->updated_at->diffForHumans()}}</td>
                 <td><a href="{{route('home.post',$post->slug)}}"><button type="button" class="btn btn-info">View Posts</button></a></td>
@@ -48,6 +48,7 @@
         @endforeach
     </tbody>
   </table>
+  {{$posts->links()}}
 @endsection
 
 @section('footer')

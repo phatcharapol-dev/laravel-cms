@@ -34,7 +34,7 @@
   {!! Form::submit('Update',['class'=>'btn btn-primary']) !!}
 {!!Form::close()!!}
 
-@include('include.form-error')
+@include('includes.form-error')
 
 </div>
 

@@ -24,6 +24,11 @@ class PhotosTableSeeder extends Seeder
                 'crated_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'file' => 'placeholder.jpg',
+                'crated_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }
