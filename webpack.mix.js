@@ -19,6 +19,7 @@ mix.js('resources/js/app.js', 'public/js')
    'resources/assets/css/libs/metisMenu.css',
    'resources/assets/css/libs/sb-admin-2.css',
    'resources/assets/css/libs/blog-post.css',
+   'resources/assets/css/libs/auth-form.css',
    'resources/assets/css/libs/styles.css',
    ],'public/css/libs.css')
    .scripts([

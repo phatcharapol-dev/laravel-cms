@@ -1,0 +1,12 @@
+.auth-form{
+    margin-top:10%;
+}
+
+.auth-form .form{
+    padding:50px;
+    background-color:white;
+    border-radius:20px;
+    width:50%;
+    margin:auto;  
+}
+

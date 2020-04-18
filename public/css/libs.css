@@ -8688,9 +8688,6 @@ footer {
     margin: 50px 0;
 }
 
-.login-form,.register-form{
-	text-align: center;
-}
 .content-blog-home,.content-blog-post{
 	margin-top:5%;
 }
@@ -8704,6 +8701,19 @@ footer {
 }
 .reply-comment{
 	padding:30px 0;
+}
+
+
+.auth-form{
+    margin-top:10%;
+}
+
+.auth-form .form{
+    padding:50px;
+    background-color:white;
+    border-radius:20px;
+    width:50%;
+    margin:auto;  
 }
 
 
