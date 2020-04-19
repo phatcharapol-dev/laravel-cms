@@ -24,6 +24,7 @@ Route::get('/posts/{id}','AdminPostController@post')->name('home.post');
 Route::get('/','AdminPostController@posts')->name('home.posts');
 
 Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin','AdminController@index')->name('admin.index');
     Route::resource('admin/users','AdminUserController',['as'=>'admin']);
     Route::resource('admin/posts','AdminPostController',['as'=>'admin']);
     Route::resource('admin/categories','AdminCategoryController',['as'=>'admin']);

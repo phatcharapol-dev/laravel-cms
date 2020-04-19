@@ -3,9 +3,6 @@
 
 
 @section('content')
-                <h1 class="page-header">
-                    Blog <small>Secondary Text</small>
-                </h1>
 
                 <!-- First Blog Post -->
                 @foreach($posts as $post)
@@ -19,7 +16,8 @@
                 <hr>
                 <img class="img-responsive" src="{{$post->photo ? asset('images/post_photo/'.$post->photo->file) : 'http://placehold.it/900x300'}}" alt="">
                 <hr>
-                <p>{{$post->body}}</p>
+                <p>{{strLimit($post->body,200)}}</p>
+                <p><strong>Category :</strong> <a href="#">{{$post->category->name}}</a><p>
                 <a class="btn btn-primary" href="{{route('home.post',$post->slug)}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
@@ -27,9 +25,8 @@
                 @endforeach
 
                 <!-- Pager -->
-                <ul class="pager">
-                    {{$posts->links()}}
-                </ul>
+                {{$posts->links()}}
+             
 @endsection
 
 
