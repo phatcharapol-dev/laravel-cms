@@ -29,7 +29,6 @@
   {!! Form::submit('Update',['class'=>'btn btn-primary']) !!}
 {!!Form::close()!!}
 
-@include('includes.form-error')
 
 </div>
 

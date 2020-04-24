@@ -26,7 +26,6 @@
     {!! Form::submit('Create Post',['class'=>'btn btn-primary']) !!}
     {!!Form::close()!!}
 
-    @include('includes.form-error')
     
 @endsection
 

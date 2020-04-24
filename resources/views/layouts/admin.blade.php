@@ -10,15 +10,20 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+
+                    @include('includes.session-msg')
 
                     @yield('content')
+
+                    
                 </div>
+
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
+        @include('includes.form-error')
     </div>
     <!-- /#page-wrapper -->
 

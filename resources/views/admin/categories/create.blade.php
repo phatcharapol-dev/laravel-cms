@@ -14,8 +14,6 @@
 {!!Form::close()!!}
 
 
- @include('includes.form-error')
-
 @endsection
 
 

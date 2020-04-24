@@ -6,9 +6,11 @@
     <!-- Navigation -->
     @include('includes.front_nav')
 
+
     <!-- Page Content -->
     <div class="container content-blog-post">
-
+         @include('includes.session-msg')
+         @include('includes.form-error')
         <div class="row">
 
             <!-- Blog Post Content Column -->
@@ -21,13 +23,12 @@
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">
 
-                @yield('side_bar')     
+                @include('includes.front_sidebar') 
 
             </div>
 
         </div>
         <!-- /.row -->
-
         <hr>
 
     </div>

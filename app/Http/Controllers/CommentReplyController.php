@@ -50,6 +50,8 @@ class CommentReplyController extends Controller
             'is_active' => 1
         ]);
 
+        Session::flash('message','Your message has been submited !');
+        Session::flash('alert-class','alert alert-success');
         return redirect()->back();
     }
 

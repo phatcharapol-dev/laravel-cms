@@ -1,10 +1,23 @@
 @extends('layouts.admin')
 
 @section('content')
-    @include('includes.session-msg')
-    <h1>Posts</h1>
 
-    <a href="{{route('admin.posts.create')}}"><button type="button" class="btn btn-primary">Create Post</button></a>
+<h1>Posts</h1>
+
+   
+<div class="row">
+    {!! Form::open(['method' => 'get' , 'action' => 'SearchController@searchPost','class' => 'form-inline']) !!}
+        <div class="col-lg-8">
+             <a href="{{route('admin.posts.create')}}"><button type="button" class="btn btn-primary">Create Post</button></a>
+        </div>
+        <div class="col-lg-4">
+        {!! Form::text('keySearch',null,['id' => 'keySearch','class' => 'form-control' ,'autocomplete' => 'off','placeholder' => 'Search Post Title']) !!}
+        {!! Form::submit('Search',['class' => 'btn btn-primary']) !!}
+        <div id="searchList"></div>
+        </div>   
+    {!! Form::close() !!}
+     
+</div>
 
 <table class="table">
     <thead>
@@ -49,6 +62,38 @@
     </tbody>
   </table>
   {{$posts->links()}}
+
+
+<script>
+$(document).ready(function(){
+
+ $('#keySearch').keyup(function(){ 
+        var keySearch = $(this).val();
+        var table = 'posts';
+        var key = 'title';
+        if(keySearch != '')
+        {
+         $.ajax({
+          url:"{{ route('fetchAutoComplete') }}",
+          method:"GET",
+          data:{keySearch:keySearch,table:table,key:key},
+          success:function(dataList){
+           $('#searchList').fadeIn();  
+                    $('#searchList').html(dataList);
+          }
+         });
+        }else{
+            $('#searchList').html('');  
+        }
+    });
+
+    $('#searchList').on('click','li', function(){  
+        $('#keySearch').val($(this).text());  
+        $('#searchList').fadeOut();  
+    });  
+
+});
+</script>
 @endsection
 
 @section('footer')

@@ -24,9 +24,11 @@
                             </li>
                         @endif
                     @else
-                        <li class="navitem">
-                            <a class="dropdown-item" href="{{ route('admin.index') }}"> DashBoard </a>
-                        </li>
+                        @if( Auth::user()->isAdmin())
+                            <li class="navitem">
+                                <a class="dropdown-item" href="{{ route('admin.index') }}"> DashBoard </a>
+                            </li>
+                        @endif
                         <li class="navitem">
                             <a href="">Welcome {{ Auth::user()->name }} </a>
                         </li>

@@ -17,27 +17,32 @@ class CategoriesTableSeeder extends Seeder
             [
                 'name' => 'PHP',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
+                'slug' => 'php'
             ],
             [
                 'name' => 'JavaScript',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
+                'slug' => 'javascript'
             ],
             [
                 'name' => 'Angular',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
+                'slug' => 'angular'
             ],
             [
                 'name' => 'Vue',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
+                'slug' => 'vue'
             ],
             [
                 'name' => 'Nodejs',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
+                'slug' => 'nodejs'
             ]
         ]);
     }

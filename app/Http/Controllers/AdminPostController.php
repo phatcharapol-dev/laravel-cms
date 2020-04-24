@@ -141,16 +141,4 @@ class AdminPostController extends Controller
         return redirect(route('admin.posts.index'));
     }
 
-    public function post($slug){
-        $post = Post::findBySlugOrFail($slug);
-        $categories = Category::all();
-        return view('post',compact('post','categories'));
-    }
-
-    public function posts(){
-        $posts = Post::paginate(5);
-        $categories = Category::all();
-        return view('home',compact('posts','categories'));
-    }
-
 }

@@ -17,10 +17,13 @@
                 <div class="form">
                     
                             @yield('form')
+
+                            <br>
+                            @include('includes.form-error')
     
                 </div>
             
-            
+                
 
 
 
