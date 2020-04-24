@@ -17,7 +17,7 @@
                     <hr>
                     <img class="img-responsive" src="{{$post->photo ? asset('images/post_photo/'.$post->photo->file) : 'http://placehold.it/900x300'}}" alt="">
                     <hr>
-                    <p>{{strLimit($post->body,200)}}</p>
+                    <p>{!!strLimit($post->body,200)!!}</p>
                     <p><strong>Category :</strong> <a href="#">{{$post->category->name}}</a><p>
                     <a class="btn btn-primary" href="{{route('home.post',$post->slug)}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 

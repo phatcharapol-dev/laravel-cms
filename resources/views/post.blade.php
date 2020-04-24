@@ -25,7 +25,7 @@
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead">{{$post->body}}</p>
+                <p class="lead">{!! trim($post->body) !!}</p>
               
                 <hr>
 
